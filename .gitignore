@@ -1,0 +1,15 @@
+.env
+config.json
+secrets.json
+
+*.sqlite
+*.db
+
+/models/
+*.h5
+*.pt
+*.pkl
+
+node_modules/
+venv/
+__pycache__/

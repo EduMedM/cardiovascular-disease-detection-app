@@ -1,0 +1,284 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+{% if patient_obj.predicted %}
+
+<div class="p-4 sm:ml-64 flex flex-col justify-center items-center min-h-20 overflow-y-auto printcontent">
+   <div class=" xl:mt-10 text-left mb-8">
+      <h1 class="text-3xl font-bold mb-4">
+         Resultados de la predicción: 
+      </h1>
+      {% if patient_obj.num == 0  %}
+      <p class="text-lg font-bold">{% if patient_obj.sex == 1 %}El {% else %}La {% endif %}paciente {{ patient_obj.name }} {{ patient_obj.surname }} de {{ patient_obj.age }} años no tiene riesgo de padecer enfermedad cardíaca.</p>
+      {% else %}
+      <p class="text-lg font-bold">{% if patient_obj.sex == 1 %}El {% else %}La {% endif %}paciente {{ patient_obj.name }} {{ patient_obj.surname }} de {{ patient_obj.age }} años tiene riesgo de padecer enfermedad cardíaca.</p>
+      {% endif %}
+   </div>
+   <div class="">
+      <div class="flex flex-row justify-center ">
+         <div class="w-70 text-sm font-medium text-gray-900 bg-white border rounded-bl-lg rounded-tl-lg border-gray-200 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <p  aria-current="true" class="block w-full px-4 py-2 hover:bg-gray-100 hover:text-blue-700 focus:outline-none border-b border-gray-200 rounded-t-lg  dark:bg-gray-800 dark:border-gray-600">
+               <span class="font-bold">Dolor de pecho</span>  :
+               {% if patient_obj.cp == 1  %}
+               Angina Típica
+               {% elif patient_obj.cp == 2 %}
+               Angina Atípica
+               {% elif patient_obj.cp == 3 %}
+               Dolor No Anginoso
+               {% elif patient_obj.cp == 4 %}
+               Asintómatico
+               {% else %}
+               Ninguno
+               {% endif %}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Presión arterial</span>  : {{ patient_obj.resting_bp }}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Glucemia</span>  :
+               {% if patient_obj.fasting_blood_sugar == 1  %}
+               &gt; 120 mg/dl
+               {% else %}
+               &lt; 120 mg/dl
+               {% endif %}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Colesterol</span>  : {{ patient_obj.serum_cholesterol }}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Res Electrocardiograma</span>  : 
+               {% if patient_obj.resting_ecg == 1  %}
+               Anomalía de la Onda ST-T
+               {% elif patient_obj.resting_ecg == 2 %}
+               Hipertrofia Ventricular Izquierda
+               {% else %}
+               Normal
+               {% endif %}
+            </p>
+            <p  class="block w-full px-4 py-2 rounded-b-lg border-b hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">F. Cardíaca Máxima</span>  : {{ patient_obj.max_heart_rate }}
+            </p>
+         </div>
+         <div class="w-70 text-sm font-medium text-gray-900 bg-white border rounded-br-lg rounded-tr-lg border-gray-200  dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Depre. del ST inducida</span>  :  {{ patient_obj.st_depression }}
+            </p>
+            <p  aria-current="true" class="block w-full px-4 py-2 hover:bg-gray-100 hover:text-blue-700 border-b border-gray-200 rounded-t-lg  dark:bg-gray-800 dark:border-gray-600">
+               <span class="font-bold">Angina inducida</span>  :
+               {% if patient_obj.exercise_induced_angina == 0  %}
+               No
+               {% else %}
+               Sí
+               {% endif %}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Número de vasos colorados</span>  : {{ patient_obj.number_of_vessels }}
+            </p>
+            <p  class="block w-full px-4 py-2 border-b border-gray-200  hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Pendiente de segmento</span>  : 
+               {% if patient_obj.st_slope == 1  %}
+               Pendiente Ascendente
+               {% elif patient_obj.st_slope == 2 %}
+               Plano
+               {% else %}
+               Pendiente Descendente
+               {% endif %}
+            </p>
+            <p  class="block w-full px-4 py-2 rounded-b-lg border-b hover:bg-gray-100 hover:text-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:border-gray-600 dark:hover:bg-gray-600 dark:hover:text-white dark:focus:ring-gray-500 dark:focus:text-white">
+               <span class="font-bold">Talio</span>  :
+               {% if patient_obj.thallium_scan_results  == 3  %}
+               Normal
+               {% elif patient_obj.thallium_scan_results  == 6 %}
+               Defecto Fijo
+               {% else %}
+               Defecto Reversible
+               {% endif %}
+            </p>
+         </div>
+      </div>
+      <div class= "pl-10 mt-5 flex  flex-wrap   justify-center gap-4">
+         <div class="maximo bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+               <div class="flex items-center">
+                  <div>
+                     <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">Colesterol </h5>
+                  </div>
+               </div>
+            </div>
+            <div class="grid grid-cols-2">
+               <dl class="flex items-center">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Colesterol Registrado:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ patient_obj.serum_cholesterol }}</dd>
+               </dl>
+               <dl class="flex items-center justify-end">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Colesterol Estándar:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ patient_obj.cholesterol_reference_value }} </dd>
+               </dl>
+            </div>
+            <div id="column-chart"></div>
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+            </div>
+         </div>
+         <div class="maximo bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+               <div class="flex items-center">
+                  <div>
+                     <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">Presión Arterial</h5>
+                  </div>
+               </div>
+            </div>
+            <div class="grid grid-cols-2">
+               <dl class="flex items-center">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Presión Arterial Registrada:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ patient_obj.resting_bp }}</dd>
+               </dl>
+               <dl class="flex items-center justify-end">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">Presión Arterial Estándar:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">120</dd>
+               </dl>
+            </div>
+            <div id="column-chart2"></div>
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+            </div>
+         </div>
+         <div class="maximo bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
+            <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 dark:border-gray-700">
+               <div class="flex items-center">
+                  <div>
+                     <h5 class="leading-none text-2xl font-bold text-gray-900 dark:text-white pb-1">Frecuencia cardíaca máxima</h5>
+                  </div>
+               </div>
+            </div>
+            <div class="grid grid-cols-2">
+               <dl class="flex items-center">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">F. Cardíaca Máx Registrada:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ patient_obj.max_heart_rate }}</dd>
+               </dl>
+               <dl class="flex items-center justify-end">
+                  <dt class="text-gray-500 dark:text-gray-400 text-sm font-normal mr-1">F. Cardíaca Máx Estándar:</dt>
+                  <dd class="text-gray-900 text-sm dark:text-white font-semibold">{{ standard_max_heart_rate }}</dd>
+               </dl>
+            </div>
+            <div id="column-chart3"></div>
+            <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
+            </div>
+         </div>
+      </div>
+      <div class="flex justify-center mt-5">
+         <button type="button" onclick={window.print()}  class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:focus:ring-yellow-900 noprint">Imprimir</button>
+      </div>
+   </div>
+</div>
+
+
+{% block extra_js %}
+
+<script>
+  // Función para crear gráficas de barra
+  function createBarChart(chartId, title, data1, data2) {
+    const options = {
+      colors: ["#1A56DB", "#FDBA8C"],
+      series: [
+        {
+          name: title,
+          color: "#FDBA8C",
+          data: [
+            { x: title, y: data1 },
+          ],
+        },
+        {
+          name: title,
+          color: "#1A56DB",
+          data: [
+            { x: title, y: data2 },
+          ],
+        },
+      ],
+      chart: {
+        type: "bar",
+        height: "140px",
+        fontFamily: "Inter, sans-serif",
+        toolbar: {
+          show: false,
+        },
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "20%",
+          borderRadiusApplication: "end",
+          borderRadius: 8,
+        },
+      },
+      tooltip: {
+        shared: true,
+        intersect: false,
+        style: {
+          fontFamily: "Inter, sans-serif",
+        },
+      },
+      states: {
+        hover: {
+          filter: {
+            type: "darken",
+            value: 1,
+          },
+        },
+      },
+      stroke: {
+        show: true,
+        width: 0,
+        colors: ["transparent"],
+      },
+      grid: {
+        show: false,
+        strokeDashArray: 4,
+        padding: {
+          left: 2,
+          right: 2,
+          top: -14,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      legend: {
+        show: false,
+      },
+      xaxis: {
+        floating: false,
+        labels: {
+          show: true,
+          style: {
+            fontFamily: "Inter, sans-serif",
+            cssClass: 'text-xs font-normal fill-gray-500 dark:fill-gray-400',
+          },
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+      fill: {
+        opacity: 1,
+      },
+    };
+
+    if (document.getElementById(chartId) && typeof ApexCharts !== 'undefined') {
+      const chart = new ApexCharts(document.getElementById(chartId), options);
+      chart.render();
+    }
+  }
+    // Crear gráficas mg/dL
+    createBarChart("column-chart", "Colesterol", {{ patient_obj.serum_cholesterol }}, {{ patient_obj.cholesterol_reference_value }});
+    createBarChart("column-chart2", "Presión Arterial", {{ patient_obj.resting_bp }}, 120);
+    createBarChart("column-chart3", "F. Cardíaca Máxima", {{ patient_obj.max_heart_rate }}, {{standard_max_heart_rate}});
+
+</script>
+
+{% endblock extra_js %}
+{% endif %}
+{% endblock content%}

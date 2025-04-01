@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.hidden{
+    display: none;
+}
+.active{
+    @apply ring-blue-700 text-blue-700
+}
+
+.maximo{
+    width: 18rem;
+}

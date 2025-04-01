@@ -1,0 +1,444 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+
+<div
+  class="p-4 sm:ml-64 flex flex-col justify-center items-center h-screen background"
+>
+<h1 class="text-4xl font-bold text-center text-white shadow-sm -mt-8 mb-5">
+    Agregar Paciente
+</h1>
+  <div class="pt-6 inline-flex rounded-md shadow-sm mb-3" role="group">
+    <button
+      type="button"
+      id="personal"
+      class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white active"
+    >
+      Datos Personales
+    </button>
+
+    <button
+      type="button"
+      id="medic"
+      class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-r-md hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+    >
+      Datos Médicos
+    </button>
+  </div>
+<div class="overflow-x-auto">
+  <div
+    class="w-3/4 max-w-screen-lg mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700"
+  >
+    <form method="POST">
+      {% csrf_token %}
+      <div id="form1">
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="text"
+              name="name"
+              id="floating_first_name"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Nombre</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="text"
+              name="surname"
+              id="floating_last_name"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Apellido</label
+            >
+          </div>
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="email"
+            name="email"
+            id="floating_email"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            for="floating_email"
+            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Correo Electrónico
+          </label>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            name="id_num"
+            min="1000000"
+            max="1000000000"
+            id="floating_idnum"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            for="floating_idnum"
+            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Cédula
+          </label>
+        </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            max="99999999999"
+            name="phone_number"
+            id="floating_phone"
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+          />
+          <label
+            for="floating_phone"
+            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Número de teléfono</label
+          >
+        </div>
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+            type="date"
+            name="date_of_birth"
+            id="age"
+            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=" "
+            required
+            />
+            <label
+                for="age"
+                class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Fecha de Nacimiento</label>
+        </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              id="floating_last_name"
+              name="sex"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" Seleccione su sexo"
+              required
+            >
+              <option value="0">Femenino</option>
+              <option value="1">Masculino</option>
+            </select>
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-md text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Sexo</label
+            >
+          </div>
+        </div>
+      </div>
+      <div id="form2" class="hidden">
+        <div class="grid md:grid-cols-2 md:gap-6">
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              name="cp"
+              id="floating_first_name"
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            >
+              <option value="0">Ninguno</option>
+              <option value="1">Angina típica</option>
+              <option value="2">Angina atípica</option>
+              <option value="3">Dolor no anginoso</option>
+              <option value="4">Asintomático</option>
+            </select>
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Dolor de pecho</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              min="0"
+              max="300"
+              name="resting_bp"
+              id="floating_last_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Presión arterial</label
+            >
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+          
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              min="30"
+              max="550"
+              name="serum_cholesterol"
+              id="floating_last_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Colesterol</label
+            >
+          </div>
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              min="10"
+              max="1000"
+              name="cholesterol_reference_value"
+              id="floating_last_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Valor de Referencia (Colesterol)</label
+            >
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              name="fasting_blood_sugar"
+              id="floating_first_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            >
+              <option value="0">&lt; 120 mg/dl</option>
+              <option value="1">&gt; 120 mg/dl</option>
+            </select>
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Glucemia</label
+            >
+          </div>
+
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              name="resting_ecg"
+              id="floating_first_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            >
+              <option value="0">Normal</option>
+              <option value="1">Anomalía de la onda ST-T</option>
+              <option value="2">
+                Hipertrofia ventricular izquierda probable
+              </option>
+            </select>
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Resultado Electrocardiograma</label
+            >
+          </div>
+          
+        </div>
+        <div class="grid md:grid-cols-2 md:gap-6">
+
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              min="30"
+              max="200"
+              name="max_heart_rate"
+              id="floating_last_name"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Frecuencia cardíaca máxima</label
+            >
+          </div>
+          
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              id="floating_last_name"
+              name="exercise_induced_angina"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
+              required
+            >
+              <option value="0">No</option>
+              <option value="1">Sí</option>
+            </select>
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Angina inducida por ejercicio
+            </label>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 md:gap-6">
+
+          <div class="relative z-0 w-full mb-6 group">
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              max="6"
+              name="st_depression"
+              id="floating_st_depression"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label
+              for="floating_first_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Depresión del Segmento ST inducida</label
+            >
+          </div>
+
+          <div class="relative z-0 w-full mb-6 group">
+            <select
+              id="floating_last_name"
+              name="st_slope"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
+              required
+            >
+              <option value="1">Ascendente</option>
+              <option value="2">Plano</option>
+              <option value="3">Descendente</option>
+            </select>
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              style="white-space: nowrap"
+              >Pendiente del segmento ST de ejercicio máximo
+            </label>
+          </div>
+        </div>
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-6 group">
+            <select
+              id="floating_last_name"
+              name="number_of_vessels"
+              class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=""
+              required
+            >
+              <option value="0">Ninguno</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+            <label
+              for="floating_last_name"
+              class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+              >Número de Vasos Colorados
+            </label>
+          </div>
+
+        <div class="relative z-0 w-full mb-6 group">
+          <select
+            id="floating_last_name"
+            name="thallium_scan_results"
+            class="block py-2.5 px-0 w-full text-base text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            placeholder=""
+            required
+          >
+            <option value="3">Normal</option>
+            <option value="6">Defecto fijo</option>
+            <option value="7">Defecto reversible</option>
+          </select>
+          <label
+            for="floating_last_name"
+            class="peer-focus:font-medium absolute text-base text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Resultado del Test de Estrés con Talio
+          </label>
+        </div>
+      </div>
+      </div>
+      <div class="flex justify-center items-center">
+      <button
+        type="submit"
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Guardar datos
+      </button>
+    </div>
+    </form>
+  </div>
+  </div>
+</div>
+
+{% block extra_js %}
+ <script>
+  function showTab(tabId) {
+    const tab1 = document.getElementById("form1");
+    const tab2 = document.getElementById("form2");
+    const medic = document.getElementById("medic");
+    const personal = document.getElementById("personal");
+
+    if (tabId === "medic") {
+      tab1.classList.add("hidden");
+      tab2.classList.remove("hidden");
+      medic.classList.add("active");
+      personal.classList.remove("active");
+    } else if (tabId === "personal") {
+      tab2.classList.add("hidden");
+      tab1.classList.remove("hidden");
+      personal.classList.add("active");
+      medic.classList.remove("active");
+    }
+  }
+
+  document.getElementById("medic").addEventListener("click", () => showTab("medic"));
+  document.getElementById("personal").addEventListener("click", () => showTab("personal"));
+</script>
+
+<script>
+    // Obtener el elemento de entrada de fecha por su ID
+    var dateInput = document.getElementById('age');
+
+    // Calcular la fecha máxima permitida (hace 18 años)
+    var maxDate = new Date();
+    maxDate.setFullYear(maxDate.getFullYear() - 18);
+
+    // Formatear la fecha máxima para que coincida con el formato de entrada de fecha
+    var maxDateFormatted = maxDate.toISOString().split('T')[0];
+
+    // Establecer el atributo "max" en el campo de entrada de fecha
+    dateInput.setAttribute('max', maxDateFormatted);
+</script>
+{% endblock extra_js %}
+{% endblock content %}

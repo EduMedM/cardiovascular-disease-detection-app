@@ -1,0 +1,120 @@
+{% extends "base.html" %} {% load static %} {% block content %}
+    {% if user.is_staff %}
+<div class="p-4 sm:ml-64 h-screen background">
+    <h1 class="text-5xl font-bold text-center text-white shadow-sm mb-6 p-6">
+        Lista de Médicos
+    </h1>
+    <div class="flex mx-4 pb-4 dark:bg-gray-900">
+        <label for="table-search" class="sr-only">Search</label>
+        <div class="relative mt-1">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                <svg class="hidden lg:block w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                </svg>
+            </div>
+            <form method="get" >
+            <input 
+            type="text" 
+            name="search" 
+            id="table-search" 
+            class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" 
+            placeholder="Buscar médico"
+            >
+            </form>
+        </div>
+        {% if search_query %}
+        <a 
+        href="{% url 'index_medics' %}" 
+        class="ml-6 text-white bg-blue-400 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-base w-full sm:w-auto px-5 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >Limpiar búsqueda
+        </a>
+        {% endif %}
+    </div>
+    <div class="relative mx-4 overflow-x-auto rounded-md shadow-md sm:rounded-lg">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 shadow-sm">
+        <thead class="text-xs text-gray-700 uppercase bg-blue-400 dark:bg-gray-700 text-white">
+            <tr>
+            <th scope="col" class="px-6 py-3">Usuario</th>
+            <th scope="col" class="px-6 py-3">Nombre</th>
+            <th scope="col" class="px-6 py-3">Apellido</th>
+            <th scope="col" class="px-6 py-3">Correo</th>
+            <th scope="col" class="px-6 py-3">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if all_medics %}
+            {% for medic in all_medics %}
+            {% if not medic.is_staff %}
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                    {{ medic.username }}
+                </th>
+                <td class="px-6 py-4">{{ medic.first_name }}</td>
+                <td class="px-6 py-4">{{ medic.last_name }}</td>
+                <td class="px-6 py-4">{{ medic.email }}</td>
+                <td class="px-6 py-4">
+                    <a href="{% url 'edit_medic' medic.id %}" type="button" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Editar</a> 
+                </td>
+                </tr>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+        </tbody>
+        </table>
+    </div>
+    <nav class="flex mx-4 items-center justify-between pt-4" aria-label="Table navigation">
+    <span class="text-sm font-normal text-gray-500 dark:text-gray-400"><span class="font-semibold text-gray-900 dark:text-white"></span><span class="font-semibold text-gray-900 dark:text-white"></span></span>
+        <ul class="inline-flex -space-x-px text-sm h-8">
+            <li>
+                <a 
+                  href="?pag=1" 
+                  class="flex items-center justify-center px-3 h-8 ml-0 leading-tight text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >&lt;&lt;
+                </a>
+            </li>
+          {% if all_medics.has_previous %}
+            <li>
+                <a 
+                  href="?pag={{ all_medics.previous_page_number }}" 
+                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >{{ all_medics.previous_page_number }}
+                </a>
+            </li>
+          {% endif %}
+            <li>
+                <a 
+                  href="?pag={{ all_medics.number }}" 
+                  aria-current="page" 
+                  class="flex items-center justify-center px-3 h-8 text-blue-600 border border-gray-300 bg-blue-50 hover:bg-blue-100 hover:text-blue-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white"
+                  >{{ all_medics.number }}
+                </a>
+            </li>
+          {% if all_medics.has_next %}
+            <li>
+                <a 
+                  href="?pag={{ all_medics.next_page_number }}" 
+                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >{{ all_medics.next_page_number }}
+                </a>
+            </li>
+          {% endif %}
+            <li>
+                <a 
+                  href="?pag={{ all_medics.end_index }}" 
+                  class="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+                  >&gt;&gt;
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+{% block extra_js %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+{% endblock extra_js %}
+
+    {% endif %}
+{% endblock content %}

@@ -1,0 +1,133 @@
+{% load compress %} {% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Predicción de riesgo de enfermedad cardíaca</title>
+
+    {% compress css %}
+    <link rel="stylesheet" href="{% static 'src/output.css' %}" />
+    {% endcompress %}
+    <link rel="stylesheet" media="print" href="{% static 'src/print.css'%}" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css"
+      rel="stylesheet"
+      
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+  </head>
+
+  <body class="h-screen">
+    
+   
+    <section class=" min-h-screen flex items-center justify-center  bg-gray-100">
+      <!-- login container -->
+        <!-- form -->
+        <div class=" w-1/2 background h-screen flex items-center  px-20   justify-center ">
+          <div class="mb-2 text-center bg-white opacity-90 rounded-md px-16  py-8 ">
+              <h1 class="text-2xl font-bold  ">Prototipo de un sistema de asistencia para la detección de enfermedades cardiovasculares mediante IA </h1>
+              <p class="text-md mt-2">Utilizando inteligencia artificial, el programa realiza predicciones de riesgo de enfermedades cardiovasculares para los pacientes, basándose en datos médicos y factores de riesgo específicos. Además, mantiene un historial detallado de estas predicciones. 
+              </p>
+          </div>
+          
+        </div>
+          
+        </div>
+        <div class="md:w-1/2 px-8 md:px-16">
+          <div class="px-16">
+          <h2 class="font-bold text-2xl text-[#002D74] ">Inicio de sesión</h2>      
+          <form action="" class="flex flex-col gap-4" method="POST">
+            {% csrf_token %}
+
+            <div class="mt-2">
+              <label
+                for="email-address-icon"
+                class="block mb-2 text-sm font-medium text-[#002D74]"
+                >Nombre de usuario</label
+              >
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  name="username"
+                  id="email-address-icon"
+                  class="bg-gray-50 border border-gray-300 text-[#002D74] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
+                  placeholder="usuario"
+                  required
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                for="email-address-icon"
+                class="block mb-2 text-sm font-medium text-[#002D74]"
+                >Contraseña</label
+              >
+              <div class="relative">
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-5 h-5"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z"
+                    />
+                  </svg>
+                </div>
+                <input
+                  type="password"
+                  name="password"
+                  id="email-address-icon"
+                  class="bg-gray-50 border border-gray-300 text-[#002D74] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 "
+                  placeholder="••••••••"
+                  required
+                />
+              </div>
+            </div>
+            
+              <button type="submit" class="bg-[#002D74]  rounded-xl text-white py-2 font-bold hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">Inicia sesión</button>
+          </form>
+          <div class="mt-2 text-xs py-4 text-[#002D74] text-center">
+            <a href="{% url 'register' %}">Regístrate</a>
+          </div>
+    
+        </div>
+        
+        </div>
+      
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   
+  </body>
+</html>
