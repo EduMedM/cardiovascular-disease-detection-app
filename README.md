@@ -1,7 +1,7 @@
 # AI-Assisted Cardiovascular Disease Detection System Prototype
 
 ## Description
-This project is a prototype of an AI-based system to assist in the detection of cardiovascular diseases. It uses **Django** for the backend, **SQLite** as the database, and libraries like **pandas** and **numpy** for data processing and analysis. The frontend is powered by **JavaScript** for user interaction.
+This project is a prototype of an AI-based system to assist in the detection of cardiovascular diseases. It uses **Django** for the backend, **SQLite** as the database, and libraries like **pandas** and **numpy** for data processing and analysis.
 
 ## Installation
 1. Clone the repository:
@@ -28,7 +28,7 @@ This project is a prototype of an AI-based system to assist in the detection of 
 # Prototipo de sistema de asistencia en la detección de enfermedades cardiovasculares mediante inteligencia artificial
 
 ## Descripción
-Este proyecto es un prototipo de sistema basado en inteligencia artificial para asistir en la detección de enfermedades cardiovasculares. Utiliza **Django** para el backend, **SQLite** como base de datos y bibliotecas como **pandas** y **numpy** para el manejo y análisis de datos. En el frontend, se emplea **JavaScript** para la interacción con el usuario.
+Este proyecto es un prototipo de sistema basado en inteligencia artificial para asistir en la detección de enfermedades cardiovasculares. Utiliza **Django** para el backend, **SQLite** como base de datos y bibliotecas como **pandas** y **numpy** para el manejo y análisis de datos.
 
 ## Instalación
 1. Clonar el repositorio:
