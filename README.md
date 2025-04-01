@@ -7,7 +7,6 @@ This project is a prototype of an AI-based system to assist in the detection of 
 1. Clone the repository:
    ```sh
    git clone https://github.com/your-user/your-repository.git
-   cd your-repository
    ```
 2. Create and activate a virtual environment:
    ```sh
@@ -35,7 +34,6 @@ Este proyecto es un prototipo de sistema basado en inteligencia artificial para 
 1. Clonar el repositorio:
    ```sh
    git clone https://github.com/tu-usuario/tu-repositorio.git
-   cd tu-repositorio
    ```
 2. Crear y activar un entorno virtual:
    ```sh
