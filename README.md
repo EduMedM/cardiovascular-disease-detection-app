@@ -6,7 +6,7 @@ This project is a prototype of an AI-based system to assist in the detection of 
 ## Installation
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-user/your-repository.git
+   git clone https://github.com/EduMedM/cardiovascular-disease-detection-app
    ```
 2. Create and activate a virtual environment:
    ```sh
@@ -33,7 +33,7 @@ Este proyecto es un prototipo de sistema basado en inteligencia artificial para 
 ## Instalación
 1. Clonar el repositorio:
    ```sh
-   git clone https://github.com/tu-usuario/tu-repositorio.git
+   git clone https://github.com/EduMedM/cardiovascular-disease-detection-app
    ```
 2. Crear y activar un entorno virtual:
    ```sh
